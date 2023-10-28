@@ -1,4 +1,4 @@
-interface TicketPageParams {
+type TicketPageParams = {
     params: {
         id: number;
     }
@@ -6,6 +6,6 @@ interface TicketPageParams {
 
 export default function TicketPage({ params }: TicketPageParams) {
     return (
-        <div>TicketPage ${params.id}</div>
+        <div>TicketPage {params.id}</div>
     )
 }
