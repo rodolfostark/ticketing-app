@@ -1,4 +1,4 @@
-import { faHome, faTicket } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faTicket, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
@@ -7,20 +7,20 @@ export default function Navbar() {
         <nav className="flex justify-between bg-navbar p-4">
             <div className="flex items-center space-x-4">
                 <Link href="/">
-                    <FontAwesomeIcon 
-                        icon={faHome} 
+                    <FontAwesomeIcon
+                        icon={faHome}
                         className="icon"
                     />
                 </Link>
                 <Link href="/">
-                    <FontAwesomeIcon 
-                        icon={faTicket} 
+                    <FontAwesomeIcon
+                        icon={faTicket}
                         className="icon"
                     />
                 </Link>
             </div>
             <div>
-                <p className="text-default-text">jonatas@gmail.com</p>
+                <FontAwesomeIcon icon={faUser} className="icon" />
             </div>
         </nav>
     )
