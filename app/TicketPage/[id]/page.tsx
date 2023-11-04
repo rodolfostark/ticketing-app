@@ -1,3 +1,5 @@
+import TicketForm from "@/app/(components)/TicketForm"
+
 type TicketPageParams = {
     params: {
         id: number;
@@ -6,6 +8,8 @@ type TicketPageParams = {
 
 export default function TicketPage({ params }: TicketPageParams) {
     return (
-        <div>TicketPage {params.id}</div>
+        <div>
+            <TicketForm />
+        </div>
     )
 }

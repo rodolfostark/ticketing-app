@@ -12,7 +12,7 @@ export default function Navbar() {
                         className="icon"
                     />
                 </Link>
-                <Link href="/">
+                <Link href="/TicketPage/new">
                     <FontAwesomeIcon
                         icon={faTicket}
                         className="icon"
