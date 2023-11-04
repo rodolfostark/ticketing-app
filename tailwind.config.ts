@@ -15,6 +15,7 @@ const config: Config = {
       },
       colors: {
         navbar: '#001529',
+        footer: '#001529',
         page: '#f5f5f5',
         card: '#15395b',
         'card-hover': '#4f5e74',

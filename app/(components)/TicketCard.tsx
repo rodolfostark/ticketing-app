@@ -14,7 +14,7 @@ export default function TicketCard() {
                     <DeleteBlock />
                 </div>
             </div>
-            <h4>Ticket Title</h4>
+            <h4 className="tracking-wider">Ticket Title</h4>
             <hr className="h-px border-0 bg-page mb-2" />
             <p className="whitespace-pre-wrap">
                 This is the ticket description! Please do this ticket
@@ -22,7 +22,7 @@ export default function TicketCard() {
             <div className="flex-grow"></div>
             <div className="flex mt-2">
                 <div className="flex flex-col">
-                    <p className="text-xs my-1">31/10/2023 10:11PM</p>
+                    <p className="text-xs my-1 font-mono">31/10/2023 10:11PM</p>
                     <ProgressDisplay />
                 </div>
                 <div className="ml-auto flex items-end">

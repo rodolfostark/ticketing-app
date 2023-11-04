@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { config } from '@fortawesome/fontawesome-svg-core'
+import { Raleway } from 'next/font/google'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import './globals.css'
 
 import Navbar from './(components)/Navbar'
+import Footer from './(components)/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const raleway = Raleway({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Ticket App',
@@ -20,12 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={raleway.className}>
         <div className="flex flex-col h-screen max-h-screen">
           <Navbar />
-          <div className="flex-grow overflow-y-auto bg-slate-400 text-default-text">
+          <div className="flex-grow overflow-y-auto bg-slate-500 text-default-text">
             {children}
           </div>
+          <Footer />
         </div>
       </body>
     </html>
