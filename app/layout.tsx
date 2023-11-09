@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
-import { Raleway } from 'next/font/google'
+import { Raleway, Roboto } from 'next/font/google'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import './globals.css'
 
 import Navbar from './(components)/Navbar'
 import Footer from './(components)/Footer'
 
-const raleway = Raleway({ subsets: ['latin'] })
+const roboto = Roboto({ 
+  subsets: ['latin'],
+  weight: "400",
+})
 
 export const metadata: Metadata = {
   title: 'Ticket App',
@@ -20,10 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={raleway.className}>
+      <body className={roboto.className}>
         <div className="flex flex-col h-screen max-h-screen">
           <Navbar />
-          <div className="flex-grow overflow-y-auto bg-slate-500 text-default-text">
+          <div className="flex-grow overflow-y-auto bg-slate-800 text-default-text">
             {children}
           </div>
           <Footer />
