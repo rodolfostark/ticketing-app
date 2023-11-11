@@ -6,7 +6,7 @@ import StatusDisplay from "./StatusDisplay";
 export default function TicketCard() {
     return (
         <div
-            className="flex flex-col bg-card hover:bg-card-hover duration-300 rounded-md shadow-2xl p-3 m-2"
+            className="flex flex-col bg-slate-700 hover:bg-slate-600 duration-300 rounded-md shadow-2xl p-3 m-2"
         >
             <div className="flex mb-3">
                 <PriorityDisplay />
@@ -15,7 +15,7 @@ export default function TicketCard() {
                 </div>
             </div>
             <h4 className="tracking-wider">Ticket Title</h4>
-            <hr className="h-px border-0 bg-slate-300 mb-2" />
+            <hr className="h-px border-0 bg-slate-900 mb-2" />
             <p className="whitespace-pre-wrap">
                 This is the ticket description! Please do this ticket
             </p>
