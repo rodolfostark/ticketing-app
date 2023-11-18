@@ -1,6 +1,10 @@
 import { Ticket } from "@/types";
 import TicketCard from "./(components)/TicketCard";
 
+interface TicketFetchProps {
+  tickets: Ticket[];
+}
+
 async function getTickets() {
   try {
     const response = await fetch("http://localhost:3000/api/Tickets", {
@@ -14,7 +18,7 @@ async function getTickets() {
 
 
 export default async function Home() {
-  const tickets: Ticket[] = await getTickets();
+  const { tickets }: TicketFetchProps = await getTickets();
   const uniqueCategories = [
     ... new Set(tickets?.map(({ category }) => category)),
   ];
@@ -29,7 +33,10 @@ export default async function Home() {
               <div className="lg:grid grid-cols-2 xl:grid-cols-4">
                 {tickets.filter((ticket) => ticket.category === uniqueCategory).map(
                   (filteredTicket, _index) => (
-                    <TicketCard id={_index} key={_index} ticket={ticket} />
+                    <TicketCard 
+                      key={_index} 
+                      ticket={filteredTicket} 
+                    />
                   )
                 )}
               </div>

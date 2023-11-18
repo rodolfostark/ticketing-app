@@ -5,5 +5,6 @@ export type Ticket = {
     priority: number,
     progress: number,
     status: string,
-    active: boolean
+    active: boolean,
+    createdAt: string
 }

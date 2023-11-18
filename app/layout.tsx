@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Raleway, Roboto } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import './globals.css'
 
