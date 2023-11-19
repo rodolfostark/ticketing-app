@@ -28,7 +28,7 @@ export default function TicketCard({ ticket }: TicketCardProps) {
             <div className="flex mb-3">
                 <PriorityDisplay priority={ticket.priority} />
                 <div className="ml-auto">
-                    <DeleteBlock />
+                    <DeleteBlock id={ticket._id}/>
                 </div>
             </div>
             <h4 className="tracking-wider">{ticket.title}</h4>
