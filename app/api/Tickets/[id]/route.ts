@@ -7,6 +7,28 @@ interface DeleteParams {
     }
 }
 
+interface GetParams {
+    params: {
+        id: string;
+    }
+}
+
+export async function GET(request: NextRequest, { params }: GetParams) {
+    try {
+        const { id } = params;
+        const foundTicket = await Ticket.findOne({ _id: id });
+        return NextResponse.json({ foundTicket }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({
+            message: "Error",
+            error
+        }, {
+            status: 500
+        });
+    }
+
+}
+
 export async function DELETE(request: NextRequest, { params }: DeleteParams) {
     try {
         await Ticket.findByIdAndDelete(params.id);

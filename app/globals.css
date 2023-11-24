@@ -33,7 +33,7 @@
     input,
     select,
     textarea {
-        @apply m-1 rounded bg-slate-700 p-1;
+        @apply m-1 rounded bg-slate-600 p-1;
     }  
 }
 

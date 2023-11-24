@@ -42,7 +42,7 @@ export default function TicketForm() {
     return (
         <div className="flex justify-center">
             <form 
-                className="flex flex-col gap-3 w-1/2 bg-slate-800 shadow-2xl" 
+                className="flex flex-col gap-3 w-1/2 bg-slate-700 shadow-2xl" 
                 method="post" 
                 onSubmit={handleSubmit}>
                 <h3>Create Your Ticket</h3>
