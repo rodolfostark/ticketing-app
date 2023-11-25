@@ -1,11 +1,16 @@
 "use client";
 
+import { Ticket } from "@/types";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function TicketForm() {
+interface TicketFormProps {
+    ticket?: Ticket;
+}
+
+export default function TicketForm({ ticket }: TicketFormProps) {
     const router = useRouter();
-    const startingTicketData = {
+    let startingTicketData = {
         title: "",
         description: "",
         priority: 1,
@@ -13,6 +18,16 @@ export default function TicketForm() {
         status: "not started",
         category: "Hardware Problem"
     };
+    if (ticket) {
+        startingTicketData = {
+            title: ticket.title,
+            description: ticket.description,
+            priority: ticket.priority,
+            progress: ticket.progress,
+            status: ticket.status,
+            category: ticket.category
+        };
+    }
     const [formData, setFormData] = useState(startingTicketData);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
@@ -27,13 +42,24 @@ export default function TicketForm() {
 
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
-        const response = await fetch("/api/Tickets", {
-            method: "POST",
-            body: JSON.stringify({formData})
-        });
-
-        if(!response.ok) {
-            throw new Error("Failed to create Ticket");
+        if (ticket) {
+            const response = await fetch(`/api/Tickets/${ticket._id}`, {
+                method: "PUT",
+                body: JSON.stringify({ formData })
+            });
+    
+            if (!response.ok) {
+                throw new Error("Failed to update Ticket");
+            }
+        } else {
+            const response = await fetch("/api/Tickets", {
+                method: "POST",
+                body: JSON.stringify({ formData })
+            });
+    
+            if (!response.ok) {
+                throw new Error("Failed to create Ticket");
+            }
         }
         router.refresh();
         router.push("/");
@@ -41,25 +67,25 @@ export default function TicketForm() {
 
     return (
         <div className="flex justify-center">
-            <form 
-                className="flex flex-col gap-3 w-1/2 bg-slate-700 shadow-2xl" 
-                method="post" 
+            <form
+                className="flex flex-col gap-3 w-1/2 bg-slate-700 shadow-2xl"
+                method="post"
                 onSubmit={handleSubmit}>
-                <h3>Create Your Ticket</h3>
+                <h3>{ticket ? "Edit Your Ticket" : "Create Your Ticket"}</h3>
                 <label>Title</label>
-                <input 
-                    type="text" 
-                    id="title" 
-                    name="title" 
-                    onChange={handleChange} 
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    onChange={handleChange}
                     required={true}
                     value={formData.title}
                 />
                 <label>Description</label>
-                <textarea 
-                    id="description" 
-                    name="description" 
-                    onChange={handleChange} 
+                <textarea
+                    id="description"
+                    name="description"
+                    onChange={handleChange}
                     required={true}
                     value={formData.description}
                     rows={5}
@@ -72,28 +98,28 @@ export default function TicketForm() {
                 </select>
                 <label>Priority</label>
                 <div>
-                    <input 
-                        type="radio" 
-                        id="priority-1" 
-                        name="priority" 
+                    <input
+                        type="radio"
+                        id="priority-1"
+                        name="priority"
                         onChange={handleChange}
                         value={1}
                         checked={formData.priority == 1}
                     />
                     <label>1</label>
-                    <input 
-                        type="radio" 
-                        id="priority-2" 
-                        name="priority" 
+                    <input
+                        type="radio"
+                        id="priority-2"
+                        name="priority"
                         onChange={handleChange}
                         value={2}
                         checked={formData.priority == 2}
                     />
                     <label>2</label>
-                    <input 
-                        type="radio" 
-                        id="priority-3" 
-                        name="priority" 
+                    <input
+                        type="radio"
+                        id="priority-3"
+                        name="priority"
                         onChange={handleChange}
                         value={3}
                         checked={formData.priority == 3}
@@ -101,26 +127,30 @@ export default function TicketForm() {
                     <label>3</label>
                 </div>
                 <label>Progress</label>
-                <input 
-                    type="range" 
+                <input
+                    type="range"
                     id="progress"
                     name="progress"
                     value={formData.progress}
                     min={0}
                     max={100}
-                    onChange={handleChange}    
+                    onChange={handleChange}
                 />
                 <label>Status</label>
-                <select 
-                    name="status" 
-                    value={formData.status} 
+                <select
+                    name="status"
+                    value={formData.status}
                     onChange={handleChange}
                 >
                     <option value="not started">Not Started</option>
                     <option value="started">Started</option>
                     <option value="done">Done</option>
                 </select>
-                <input type="submit" value="Create Ticket" className="button max-w-xs" />
+                <input 
+                    type="submit" 
+                    value={ticket ? "Update Ticket" : "Create Ticket"} 
+                    className="button max-w-xs" 
+                />
             </form>
         </div>
     )

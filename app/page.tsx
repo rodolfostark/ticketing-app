@@ -8,9 +8,11 @@ interface TicketFetchProps {
 async function getTickets() {
   try {
     const response = await fetch("http://localhost:3000/api/Tickets", {
-      cache: "no-store",
-    });
-    return response.json();
+      cache: "no-store"
+    }).then(
+      response => response.json()
+    );
+    return response;
   } catch (error) {
     console.log("Failed to get Tickets", error);
   }
