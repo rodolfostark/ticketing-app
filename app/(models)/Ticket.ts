@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
-mongoose.connect(process.env.MONGODB_URI);
+const mongodbUri = process.env.MONGODB_URI ? process.env.MONGODB_URI : "";
+mongoose.connect(mongodbUri);
 mongoose.Promise = global.Promise;
 
 const ticketSchema = new Schema(
